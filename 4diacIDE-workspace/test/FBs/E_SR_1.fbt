@@ -30,9 +30,11 @@
 			</ECState>
 			<ECState Name="SET" Comment="" x="1200.0" y="400.0">
 				<ECAction Algorithm="SET" Output="EO"/>
+				<ECAction Output="SO"/>
 			</ECState>
 			<ECState Name="RESET" Comment="" x="1162.5" y="843.75">
 				<ECAction Algorithm="RESET" Output="EO"/>
+				<ECAction Output="RO"/>
 			</ECState>
 			<ECTransition Source="START" Destination="SET" Condition="S" Comment="" x="993.75" y="450.0"/>
 			<ECTransition Source="SET" Destination="RESET" Condition="R" Comment="" x="1200.0" y="681.25"/>
