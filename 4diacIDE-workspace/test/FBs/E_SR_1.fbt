@@ -34,18 +34,24 @@
 			</ECState>
 			<ECState Name="SET" Comment="" x="1200.0" y="400.0">
 				<ECAction Algorithm="SET" Output="EO"/>
-				<ECAction Algorithm="SET1" Output="SO"/>
 			</ECState>
 			<ECState Name="RESET" Comment="" x="1162.5" y="843.75">
 				<ECAction Algorithm="RESET" Output="EO"/>
+			</ECState>
+			<ECState Name="SETSET" Comment="" x="2875.0" y="250.0">
+				<ECAction Algorithm="SET1" Output="SO"/>
+			</ECState>
+			<ECState Name="RESETRESET" Comment="" x="2750.0" y="1125.0">
 				<ECAction Algorithm="RESET1" Output="RO"/>
 			</ECState>
 			<ECTransition Source="START" Destination="SET" Condition="S" Comment="" x="993.75" y="450.0"/>
 			<ECTransition Source="SET" Destination="RESET" Condition="R" Comment="" x="1200.0" y="681.25"/>
 			<ECTransition Source="RESET" Destination="SET" Condition="S" Comment="" x="1456.25" y="675.0"/>
-			<ECTransition Source="SET" Destination="SET" Condition="S" Comment="" x="1362.5" y="81.25"/>
-			<ECTransition Source="RESET" Destination="RESET" Condition="R" Comment="" x="1293.75" y="1493.75"/>
 			<ECTransition Source="START" Destination="RESET" Condition="R" Comment="" x="906.25" y="675.0"/>
+			<ECTransition Source="RESET" Destination="RESETRESET" Condition="R" Comment="" x="2068.75" y="1287.5"/>
+			<ECTransition Source="SET" Destination="SETSET" Condition="S" Comment="" x="2037.5" y="125.0"/>
+			<ECTransition Source="RESETRESET" Destination="SET" Condition="S" Comment="" x="2112.5" y="756.25"/>
+			<ECTransition Source="SETSET" Destination="RESET" Condition="R" Comment="" x="2106.25" y="593.75"/>
 		</ECC>
 		<Algorithm Name="SET" Comment="">
 			<ST><![CDATA[ALGORITHM SET
