@@ -111,6 +111,7 @@ END_ALGORITHM]]></ST>
 
 ALGORITHM Out1
 DO1 := TRUE;
+timeOut.DT := DT1;
 ActualStep := 'Out1';
 END_ALGORITHM]]></ST>
 		</Algorithm>
