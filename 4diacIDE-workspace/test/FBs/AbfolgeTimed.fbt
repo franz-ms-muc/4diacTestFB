@@ -8,6 +8,10 @@
 		<EventInputs>
 			<Event Name="INIT" Type="Event" Comment="Initialization Request">
 				<With Var="QI"/>
+				<With Var="DT1"/>
+				<With Var="DT2"/>
+				<With Var="DT3"/>
+				<With Var="DT4"/>
 			</Event>
 			<Event Name="REQ" Type="Event" Comment="Normal Execution Request">
 			</Event>
