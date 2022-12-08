@@ -6,4 +6,65 @@
 		<SubAppNetwork>
 		</SubAppNetwork>
 	</Application>
+	<Application Name="mapping" Comment="">
+		<SubAppNetwork>
+			<FB Name="Hutschienenmoped_3_DI_SINGLE_CLICK" Type="Hutschienenmoped_3_DI_SINGLE_CLICK" Comment="" x="1668.75" y="1425.0">
+				<Parameter Name="QI" Value="TRUE"/>
+				<Parameter Name="u8SAMember" Value="255"/>
+				<Parameter Name="u16ObjId" Value="65535"/>
+				<Parameter Name="DigitalInput_I1" Value="&quot;DigitalInput_I1_SINGLE_CLICK&quot;"/>
+				<Parameter Name="DigitalInput_I2" Value="&quot;DigitalInput_I2_SINGLE_CLICK&quot;"/>
+				<Parameter Name="DigitalInput_I3" Value="&quot;DigitalInput_I3_SINGLE_CLICK&quot;"/>
+			</FB>
+			<FB Name="Hutschienenmoped_4_DO" Type="Hutschienenmoped_4_DO" Comment="" x="4775.0" y="1425.0">
+				<Parameter Name="QI" Value="TRUE"/>
+				<Parameter Name="u8SAMember" Value="255"/>
+				<Parameter Name="u16ObjId" Value="65535"/>
+				<Parameter Name="DigitalOutput_Q1" Value="&quot;DigitalOutput_Q1&quot;"/>
+				<Parameter Name="DigitalOutput_Q2" Value="&quot;DigitalOutput_Q2&quot;"/>
+				<Parameter Name="DigitalOutput_Q3" Value="&quot;DigitalOutput_Q3&quot;"/>
+				<Parameter Name="DigitalOutput_Q4" Value="&quot;DigitalOutput_Q4&quot;"/>
+			</FB>
+			<EventConnections>
+				<Connection Source="Hutschienenmoped_3_DI_SINGLE_CLICK.INITO" Destination="Hutschienenmoped_4_DO.INIT" Comment=""/>
+			</EventConnections>
+		</SubAppNetwork>
+	</Application>
+	<Device Name="FORTE_PC" Type="FORTE_PC" Comment="" x="2918.75" y="2462.5">
+		<Parameter Name="MGR_ID" Value="&quot;192.168.4.1:61499&quot;"/>
+		<Attribute Name="Profile" Type="STRING" Value="HOLOBLOC"/>
+		<Attribute Name="Color" Type="STRING" Value="255,190,111"/>
+		<Resource Name="EMB_RES" Type="EMB_RES" Comment="" x="0.0" y="0.0">
+			<FBNetwork>
+				<FB Name="Hutschienenmoped_4_DO" Type="Hutschienenmoped_4_DO" Comment="" x="4906.25" y="1775.0">
+					<Parameter Name="QI" Value="TRUE"/>
+					<Parameter Name="u8SAMember" Value="255"/>
+					<Parameter Name="u16ObjId" Value="65535"/>
+					<Parameter Name="DigitalOutput_Q1" Value="&quot;DigitalOutput_Q1&quot;"/>
+					<Parameter Name="DigitalOutput_Q2" Value="&quot;DigitalOutput_Q2&quot;"/>
+					<Parameter Name="DigitalOutput_Q3" Value="&quot;DigitalOutput_Q3&quot;"/>
+					<Parameter Name="DigitalOutput_Q4" Value="&quot;DigitalOutput_Q4&quot;"/>
+				</FB>
+				<FB Name="Hutschienenmoped_3_DI_SINGLE_CLICK" Type="Hutschienenmoped_3_DI_SINGLE_CLICK" Comment="" x="1893.75" y="1325.0">
+					<Parameter Name="QI" Value="TRUE"/>
+					<Parameter Name="u8SAMember" Value="255"/>
+					<Parameter Name="u16ObjId" Value="65535"/>
+					<Parameter Name="DigitalInput_I1" Value="&quot;DigitalInput_I1_SINGLE_CLICK&quot;"/>
+					<Parameter Name="DigitalInput_I2" Value="&quot;DigitalInput_I2_SINGLE_CLICK&quot;"/>
+					<Parameter Name="DigitalInput_I3" Value="&quot;DigitalInput_I3_SINGLE_CLICK&quot;"/>
+				</FB>
+				<EventConnections>
+					<Connection Source="Hutschienenmoped_3_DI_SINGLE_CLICK.INITO" Destination="Hutschienenmoped_4_DO.INIT" Comment="" dx1="812.5"/>
+					<Connection Source="START.COLD" Destination="Hutschienenmoped_3_DI_SINGLE_CLICK.INIT" Comment="" dx1="693.75"/>
+				</EventConnections>
+			</FBNetwork>
+		</Resource>
+	</Device>
+	<Mapping From="mapping.Hutschienenmoped_4_DO" To="FORTE_PC.EMB_RES.Hutschienenmoped_4_DO"/>
+	<Mapping From="mapping.Hutschienenmoped_3_DI_SINGLE_CLICK" To="FORTE_PC.EMB_RES.Hutschienenmoped_3_DI_SINGLE_CLICK"/>
+	<Segment Name="Ethernet" Type="Ethernet" Comment="" x="4087.5" y="1912.5" dx1="1875.0">
+		<Attribute Name="Color" Type="STRING" Value="201,77,119"/>
+	</Segment>
+	<Link SegmentName="Ethernet" CommResource="FORTE_PC" Comment="">
+	</Link>
 </System>
