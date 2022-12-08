@@ -56,7 +56,7 @@
 	</Application>
 	<Device Name="FORTE_PC" Type="FORTE_PC" Comment="" x="2918.75" y="2462.5">
 		<Parameter Name="MGR_ID" Value="&quot;192.168.4.1:61499&quot;"/>
-		<Attribute Name="Profile" Type="STRING" Value="HOLOBLOC"/>
+		<Attribute Name="Profile" Type="STRING" Value="DynamicTypeLoad"/>
 		<Attribute Name="Color" Type="STRING" Value="255,190,111"/>
 		<Resource Name="EMB_RES" Type="EMB_RES" Comment="" x="0.0" y="0.0">
 			<FBNetwork>
