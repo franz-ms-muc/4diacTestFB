@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FBType Name="oneComposite" Comment="Composite FB wrapping other FBs">
+	<Identification Standard="61499-2">
+	</Identification>
+	<VersionInfo Version="1.0" Author="franz" Date="2022-08-01">
+	</VersionInfo>
+	<InterfaceList>
+		<EventInputs>
+			<Event Name="INIT" Type="Event" Comment="Initialization Request">
+				<With Var="QI"/>
+				<Attribute Name="YPOSITION" Type="STRING" Value="39"/>
+			</Event>
+			<Event Name="REQ" Type="Event" Comment="Normal Execution Request">
+				<With Var="QI"/>
+				<With Var="DI1"/>
+				<With Var="DI2"/>
+				<Attribute Name="YPOSITION" Type="STRING" Value="0"/>
+			</Event>
+		</EventInputs>
+		<EventOutputs>
+			<Event Name="INITO" Type="Event" Comment="Initialization Confirm">
+				<With Var="QO"/>
+				<Attribute Name="YPOSITION" Type="STRING" Value="20"/>
+			</Event>
+			<Event Name="CNF" Type="Event" Comment="Execution Confirmation">
+				<With Var="QO"/>
+				<With Var="DO1"/>
+				<Attribute Name="YPOSITION" Type="STRING" Value="25"/>
+			</Event>
+		</EventOutputs>
+		<InputVars>
+			<VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier">
+				<Attribute Name="YPOSITION" Type="STRING" Value="8"/>
+			</VarDeclaration>
+			<VarDeclaration Name="DI1" Type="BOOL" Comment="">
+				<Attribute Name="YPOSITION" Type="STRING" Value="0"/>
+			</VarDeclaration>
+			<VarDeclaration Name="DI2" Type="BOOL" Comment="">
+				<Attribute Name="YPOSITION" Type="STRING" Value="0"/>
+			</VarDeclaration>
+		</InputVars>
+		<OutputVars>
+			<VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier">
+				<Attribute Name="YPOSITION" Type="STRING" Value="0"/>
+			</VarDeclaration>
+			<VarDeclaration Name="DO1" Type="BOOL" Comment="">
+				<Attribute Name="YPOSITION" Type="STRING" Value="2"/>
+			</VarDeclaration>
+		</OutputVars>
+	</InterfaceList>
+	<FBNetwork>
+		<FB Name="AND_2" Type="AND_2" Comment="" x="-752.9411764705882" y="-882.3529411764705">
+		</FB>
+		<EventConnections>
+			<Connection Source="REQ" Destination="AND_2.REQ" Comment="" dx1="358.8235294117647"/>
+			<Connection Source="AND_2.CNF" Destination="CNF" Comment=""/>
+			<Connection Source="INIT" Destination="INITO" Comment="" dx1="2347.0588235294117"/>
+		</EventConnections>
+		<DataConnections>
+			<Connection Source="DI1" Destination="AND_2.IN1" Comment=""/>
+			<Connection Source="DI2" Destination="AND_2.IN2" Comment=""/>
+			<Connection Source="AND_2.OUT" Destination="DO1" Comment=""/>
+			<Connection Source="QI" Destination="QO" Comment="" dx1="2347.0588235294117"/>
+		</DataConnections>
+	</FBNetwork>
+</FBType>

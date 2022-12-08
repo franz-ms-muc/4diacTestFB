@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FBType Name="AbfolgeC" Comment="Composite FB wrapping other FBs">
+	<Identification Standard="61499-2">
+	</Identification>
+	<VersionInfo Version="1.0" Author="franz" Date="2022-10-10">
+	</VersionInfo>
+	<InterfaceList>
+		<EventInputs>
+			<Event Name="INIT" Type="Event" Comment="Initialization Request">
+				<With Var="QI"/>
+				<Attribute Name="YPOSITION" Type="STRING" Value="20"/>
+			</Event>
+			<Event Name="REQ" Type="Event" Comment="Normal Execution Request">
+				<With Var="QI"/>
+				<With Var="DT1"/>
+				<With Var="DT2"/>
+				<With Var="DT3"/>
+				<With Var="DT4"/>
+				<Attribute Name="YPOSITION" Type="STRING" Value="41"/>
+			</Event>
+		</EventInputs>
+		<EventOutputs>
+			<Event Name="INITO" Type="Event" Comment="Initialization Confirm">
+				<With Var="QO"/>
+				<Attribute Name="YPOSITION" Type="STRING" Value="85"/>
+			</Event>
+			<Event Name="CNF" Type="Event" Comment="">
+				<With Var="INACTIVE"/>
+				<Attribute Name="YPOSITION" Type="STRING" Value="25"/>
+			</Event>
+			<Event Name="EO1" Type="Event" Comment="">
+				<With Var="DO1"/>
+				<Attribute Name="YPOSITION" Type="STRING" Value="37"/>
+			</Event>
+			<Event Name="EO2" Type="Event" Comment="">
+				<With Var="DO2"/>
+				<Attribute Name="YPOSITION" Type="STRING" Value="103"/>
+			</Event>
+			<Event Name="EO3" Type="Event" Comment="">
+				<With Var="DO3"/>
+				<Attribute Name="YPOSITION" Type="STRING" Value="107"/>
+			</Event>
+			<Event Name="EO4" Type="Event" Comment="">
+				<With Var="DO4"/>
+				<Attribute Name="YPOSITION" Type="STRING" Value="107"/>
+			</Event>
+		</EventOutputs>
+		<InputVars>
+			<VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier">
+				<Attribute Name="YPOSITION" Type="STRING" Value="8"/>
+			</VarDeclaration>
+			<VarDeclaration Name="DT1" Type="TIME" Comment="">
+				<Attribute Name="YPOSITION" Type="STRING" Value="131"/>
+			</VarDeclaration>
+			<VarDeclaration Name="DT2" Type="TIME" Comment="">
+				<Attribute Name="YPOSITION" Type="STRING" Value="103"/>
+			</VarDeclaration>
+			<VarDeclaration Name="DT3" Type="TIME" Comment="">
+				<Attribute Name="YPOSITION" Type="STRING" Value="107"/>
+			</VarDeclaration>
+			<VarDeclaration Name="DT4" Type="TIME" Comment="">
+				<Attribute Name="YPOSITION" Type="STRING" Value="107"/>
+			</VarDeclaration>
+		</InputVars>
+		<OutputVars>
+			<VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier">
+				<Attribute Name="YPOSITION" Type="STRING" Value="0"/>
+			</VarDeclaration>
+			<VarDeclaration Name="INACTIVE" Type="BOOL" Comment="">
+				<Attribute Name="YPOSITION" Type="STRING" Value="0"/>
+			</VarDeclaration>
+			<VarDeclaration Name="DO1" Type="BOOL" Comment="">
+				<Attribute Name="YPOSITION" Type="STRING" Value="0"/>
+			</VarDeclaration>
+			<VarDeclaration Name="DO2" Type="BOOL" Comment="">
+				<Attribute Name="YPOSITION" Type="STRING" Value="0"/>
+			</VarDeclaration>
+			<VarDeclaration Name="DO3" Type="BOOL" Comment="">
+				<Attribute Name="YPOSITION" Type="STRING" Value="0"/>
+			</VarDeclaration>
+			<VarDeclaration Name="DO4" Type="BOOL" Comment="">
+				<Attribute Name="YPOSITION" Type="STRING" Value="0"/>
+			</VarDeclaration>
+		</OutputVars>
+	</InterfaceList>
+	<FBNetwork>
+		<FB Name="E_DELAY_1" Type="E_DELAY" Comment="" x="-2131.25" y="1162.5">
+		</FB>
+		<FB Name="E_DELAY_2" Type="E_DELAY" Comment="" x="-1012.5" y="1912.5">
+		</FB>
+		<FB Name="E_DELAY_3" Type="E_DELAY" Comment="" x="106.25" y="2687.5">
+		</FB>
+		<FB Name="E_DELAY_4" Type="E_DELAY" Comment="" x="1225.0" y="3462.5">
+		</FB>
+		<FB Name="E_SR_1" Type="E_SR" Comment="" x="3493.75" y="1056.25">
+		</FB>
+		<FB Name="E_SR_2" Type="E_SR" Comment="" x="3493.75" y="1806.25">
+		</FB>
+		<FB Name="E_SR_3" Type="E_SR" Comment="" x="3493.75" y="2581.25">
+		</FB>
+		<FB Name="E_SR_4" Type="E_SR" Comment="" x="3493.75" y="3356.25">
+		</FB>
+		<FB Name="E_SR_INACTIVE" Type="E_SR" Comment="" x="2343.75" y="718.75">
+		</FB>
+		<FB Name="E_PERMIT" Type="E_PERMIT" Comment="" x="-3300.0" y="412.5">
+		</FB>
+		<EventConnections>
+			<Connection Source="E_DELAY_1.EO" Destination="E_SR_1.R" Comment=""/>
+			<Connection Source="E_DELAY_2.EO" Destination="E_SR_2.R" Comment=""/>
+			<Connection Source="E_DELAY_3.EO" Destination="E_SR_3.R" Comment=""/>
+			<Connection Source="E_DELAY_4.EO" Destination="E_SR_4.R" Comment=""/>
+			<Connection Source="E_DELAY_1.EO" Destination="E_SR_2.S" Comment="" dx1="4575.0"/>
+			<Connection Source="E_DELAY_2.EO" Destination="E_SR_3.S" Comment="" dx1="3456.25"/>
+			<Connection Source="E_DELAY_3.EO" Destination="E_SR_4.S" Comment="" dx1="2337.5"/>
+			<Connection Source="E_DELAY_1.EO" Destination="E_DELAY_2.START" Comment="" dx1="68.75"/>
+			<Connection Source="E_DELAY_2.EO" Destination="E_DELAY_3.START" Comment="" dx1="68.75"/>
+			<Connection Source="E_DELAY_3.EO" Destination="E_DELAY_4.START" Comment="" dx1="68.75"/>
+			<Connection Source="INIT" Destination="INITO" Comment="" dx1="3743.75"/>
+			<Connection Source="E_SR_1.EO" Destination="EO1" Comment="" dx1="1137.5"/>
+			<Connection Source="E_SR_2.EO" Destination="EO2" Comment="" dx1="1137.5"/>
+			<Connection Source="E_SR_3.EO" Destination="EO3" Comment="" dx1="1137.5"/>
+			<Connection Source="E_SR_4.EO" Destination="EO4" Comment="" dx1="1137.5"/>
+			<Connection Source="E_PERMIT.EO" Destination="E_SR_1.S" Comment="" dx1="5818.75"/>
+			<Connection Source="E_PERMIT.EO" Destination="E_DELAY_1.START" Comment="" dx1="68.75"/>
+			<Connection Source="REQ" Destination="E_PERMIT.EI" Comment="" dx1="225.0"/>
+			<Connection Source="INIT" Destination="E_SR_INACTIVE.S" Comment="" dx1="5712.5"/>
+			<Connection Source="E_DELAY_4.EO" Destination="E_SR_INACTIVE.S" Comment="" dx1="131.25"/>
+			<Connection Source="E_PERMIT.EO" Destination="E_SR_INACTIVE.R" Comment="" dx1="4543.75"/>
+			<Connection Source="E_SR_INACTIVE.EO" Destination="CNF" Comment="" dx1="1662.5"/>
+		</EventConnections>
+		<DataConnections>
+			<Connection Source="E_SR_1.Q" Destination="DO1" Comment="" dx1="318.75"/>
+			<Connection Source="E_SR_2.Q" Destination="DO2" Comment="" dx1="193.75"/>
+			<Connection Source="E_SR_3.Q" Destination="DO3" Comment="" dx1="131.25"/>
+			<Connection Source="E_SR_4.Q" Destination="DO4" Comment="" dx1="68.75"/>
+			<Connection Source="DT4" Destination="E_DELAY_4.DT" Comment="" dx1="2487.5"/>
+			<Connection Source="DT3" Destination="E_DELAY_3.DT" Comment="" dx1="1931.25"/>
+			<Connection Source="DT2" Destination="E_DELAY_2.DT" Comment="" dx1="1368.75"/>
+			<Connection Source="DT1" Destination="E_DELAY_1.DT" Comment="" dx1="812.5"/>
+			<Connection Source="QI" Destination="QO" Comment="" dx1="9781.25"/>
+			<Connection Source="E_SR_INACTIVE.Q" Destination="INACTIVE" Comment="" dx1="312.5" dx2="437.5" dy="506.25"/>
+			<Connection Source="E_SR_INACTIVE.Q" Destination="E_PERMIT.PERMIT" Comment="" dx1="312.5" dx2="62.5" dy="-881.25"/>
+		</DataConnections>
+	</FBNetwork>
+</FBType>

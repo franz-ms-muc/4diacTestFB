@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FBType Name="MyBasicFB" Comment="Template for a Basic Function Block Type">
+	<Identification Standard="61499-2">
+	</Identification>
+	<VersionInfo Version="1.0" Author="franz" Date="2022-08-01">
+	</VersionInfo>
+	<InterfaceList>
+		<EventInputs>
+			<Event Name="INIT" Type="Event" Comment="Initialization Request">
+				<With Var="QI"/>
+			</Event>
+			<Event Name="REQ" Type="Event" Comment="Normal Execution Request">
+				<With Var="QI"/>
+			</Event>
+		</EventInputs>
+		<EventOutputs>
+			<Event Name="INITO" Type="Event" Comment="Initialization Confirm">
+				<With Var="QO"/>
+			</Event>
+			<Event Name="CNF" Type="Event" Comment="Execution Confirmation">
+				<With Var="QO"/>
+			</Event>
+		</EventOutputs>
+		<InputVars>
+			<VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier"/>
+		</InputVars>
+		<OutputVars>
+			<VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier"/>
+		</OutputVars>
+	</InterfaceList>
+	<BasicFB>
+		<ECC>
+			<ECState Name="START" Comment="Initial State" x="470.5882352941176" y="1123.5294117647059">
+			</ECState>
+			<ECState Name="Init" Comment="Initialization" x="1229.4117647058822" y="664.7058823529411">
+				<ECAction Algorithm="initialize" Output="INITO"/>
+			</ECState>
+			<ECState Name="NormalOp" Comment="Normal execution" x="2847.0588235294117" y="1135.2941176470588">
+				<ECAction Algorithm="normalOperation" Output="CNF"/>
+			</ECState>
+			<ECState Name="Initialized" Comment="" x="1899.9999999999998" y="1135.2941176470588">
+			</ECState>
+			<ECState Name="DeInit" Comment="" x="1135.2941176470588" y="1517.6470588235293">
+				<ECAction Algorithm="deInitialize" Output="INITO"/>
+			</ECState>
+			<ECTransition Source="START" Destination="Init" Condition="INIT[TRUE = QI]" Comment="" x="835.2941176470588" y="917.6470588235294"/>
+			<ECTransition Source="Init" Destination="Initialized" Condition="1" Comment="" x="1658.8235294117646" y="970.5882352941176"/>
+			<ECTransition Source="Initialized" Destination="NormalOp" Condition="REQ" Comment="" x="2611.7647058823527" y="999.9999999999999"/>
+			<ECTransition Source="NormalOp" Destination="Initialized" Condition="1" Comment="" x="2570.5882352941176" y="1429.4117647058822"/>
+			<ECTransition Source="DeInit" Destination="START" Condition="1" Comment="" x="935.2941176470588" y="1441.1764705882351"/>
+			<ECTransition Source="Initialized" Destination="DeInit" Condition="INIT[FALSE = QI]" Comment="" x="1688.2352941176468" y="1335.2941176470588"/>
+		</ECC>
+		<Algorithm Name="initialize" Comment="Initialization algorithm">
+			<ST><![CDATA[
+QO := QI;]]></ST>
+		</Algorithm>
+		<Algorithm Name="deInitialize" Comment="Normally executed algorithm">
+			<ST><![CDATA[
+QO := FALSE;]]></ST>
+		</Algorithm>
+		<Algorithm Name="normalOperation" Comment="new algorithm">
+			<ST><![CDATA[QO := QI;
+
+IF TRUE  = QI THEN
+  (*  only perform normal operation of QI is true*)
+
+END_IF;
+]]></ST>
+		</Algorithm>
+	</BasicFB>
+</FBType>
