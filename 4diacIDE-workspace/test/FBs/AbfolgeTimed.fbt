@@ -14,7 +14,6 @@
 				<With Var="DT2"/>
 				<With Var="DT3"/>
 				<With Var="DT4"/>
-				<With Var="QI"/>
 			</Event>
 		</EventInputs>
 		<EventOutputs>
@@ -85,10 +84,10 @@
 			<ECTransition Source="DeInit" Destination="START" Condition="1" Comment="" x="931.25" y="1437.5"/>
 			<ECTransition Source="Initialized" Destination="DeInit" Condition="INIT[FALSE = QI]" Comment="" x="1687.5" y="1331.25"/>
 			<ECTransition Source="Initialized" Destination="Out1" Condition="REQ" Comment="" x="3300.0" y="787.5"/>
-			<ECTransition Source="Out1" Destination="Out2" Condition="timeOut.TimeOut" Comment="" x="4031.25" y="918.75"/>
-			<ECTransition Source="Out2" Destination="Out3" Condition="timeOut.TimeOut" Comment="" x="4012.5" y="1500.0"/>
-			<ECTransition Source="Out3" Destination="Out4" Condition="timeOut.TimeOut" Comment="" x="4050.0" y="2068.75"/>
-			<ECTransition Source="Out4" Destination="Initialized" Condition="timeOut.TimeOut" Comment="" x="3187.5" y="1981.25"/>
+			<ECTransition Source="Out1" Destination="Out2" Condition="REQ" Comment="" x="4031.25" y="918.75"/>
+			<ECTransition Source="Out2" Destination="Out3" Condition="REQ" Comment="" x="4012.5" y="1500.0"/>
+			<ECTransition Source="Out3" Destination="Out4" Condition="REQ" Comment="" x="4050.0" y="2068.75"/>
+			<ECTransition Source="Out4" Destination="Initialized" Condition="REQ" Comment="" x="3187.5" y="1981.25"/>
 		</ECC>
 		<Algorithm Name="initialize" Comment="">
 			<ST><![CDATA[ALGORITHM initialize
