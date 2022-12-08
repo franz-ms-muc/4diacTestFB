@@ -60,16 +60,16 @@
 				<ECAction Algorithm="deInitialize" Output="INITO"/>
 			</ECState>
 			<ECState Name="Out1" Comment="" x="3881.25" y="468.75">
-				<ECAction Algorithm="Out1"/>
+				<ECAction Algorithm="Out1" Output="EO1"/>
 			</ECState>
 			<ECState Name="Out2" Comment="" x="3881.25" y="1056.25">
-				<ECAction Algorithm="Out2"/>
+				<ECAction Algorithm="Out2" Output="EO2"/>
 			</ECState>
 			<ECState Name="Out3" Comment="" x="3881.25" y="1643.75">
-				<ECAction Algorithm="Out3"/>
+				<ECAction Algorithm="Out3" Output="EO3"/>
 			</ECState>
 			<ECState Name="Out4" Comment="" x="3881.25" y="2231.25">
-				<ECAction Algorithm="Out4"/>
+				<ECAction Algorithm="Out4" Output="EO4"/>
 			</ECState>
 			<ECTransition Source="START" Destination="Init" Condition="INIT[TRUE = QI]" Comment="" x="831.25" y="912.5"/>
 			<ECTransition Source="Init" Destination="Initialized" Condition="1" Comment="" x="1656.25" y="968.75"/>

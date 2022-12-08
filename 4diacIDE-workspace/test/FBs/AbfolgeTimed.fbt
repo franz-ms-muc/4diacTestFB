@@ -54,9 +54,6 @@
 			<VarDeclaration Name="DO3" Type="BOOL" Comment=""/>
 			<VarDeclaration Name="DO4" Type="BOOL" Comment=""/>
 		</OutputVars>
-		<Plugs>
-			<AdapterDeclaration Name="timeOut" Type="ATimeOut" Comment=""/>
-		</Plugs>
 	</InterfaceList>
 	<BasicFB>
 		<ECC>
@@ -72,20 +69,16 @@
 				<ECAction Algorithm="deInitialize" Output="INITO"/>
 			</ECState>
 			<ECState Name="Out1" Comment="" x="3881.25" y="468.75">
-				<ECAction Algorithm="Out1"/>
-				<ECAction Output="timeOut.START"/>
+				<ECAction Algorithm="Out1" Output="EO1"/>
 			</ECState>
 			<ECState Name="Out2" Comment="" x="3881.25" y="1056.25">
-				<ECAction Algorithm="Out2"/>
-				<ECAction Output="timeOut.START"/>
+				<ECAction Algorithm="Out2" Output="EO2"/>
 			</ECState>
 			<ECState Name="Out3" Comment="" x="3881.25" y="1643.75">
-				<ECAction Algorithm="Out3"/>
-				<ECAction Output="timeOut.START"/>
+				<ECAction Algorithm="Out3" Output="EO3"/>
 			</ECState>
 			<ECState Name="Out4" Comment="" x="3881.25" y="2231.25">
-				<ECAction Algorithm="Out4"/>
-				<ECAction Output="timeOut.START"/>
+				<ECAction Algorithm="Out4" Output="EO4"/>
 			</ECState>
 			<ECTransition Source="START" Destination="Init" Condition="INIT[TRUE = QI]" Comment="" x="831.25" y="912.5"/>
 			<ECTransition Source="Init" Destination="Initialized" Condition="1" Comment="" x="1656.25" y="968.75"/>
@@ -116,7 +109,6 @@ END_ALGORITHM]]></ST>
 
 ALGORITHM Out1
 DO1 := TRUE;
-timeOut.DT := DTI1;
 ActualStep := 'Out1';
 END_ALGORITHM]]></ST>
 		</Algorithm>
@@ -126,7 +118,6 @@ END_ALGORITHM]]></ST>
 ALGORITHM Out2
 DO1 := FALSE;
 DO2 := TRUE;
-timeOut.DT := DTI2;
 ActualStep := 'Out2';
 END_ALGORITHM]]></ST>
 		</Algorithm>
@@ -136,7 +127,6 @@ END_ALGORITHM]]></ST>
 ALGORITHM Out3
 DO2 := FALSE;
 DO3 := TRUE;
-timeOut.DT := DTI3;
 ActualStep := 'Out3';
 END_ALGORITHM]]></ST>
 		</Algorithm>
@@ -146,7 +136,6 @@ END_ALGORITHM]]></ST>
 ALGORITHM Out4
 DO3 := FALSE;
 DO4 := TRUE;
-timeOut.DT := DTI4;
 ActualStep := 'Out4';
 END_ALGORITHM]]></ST>
 		</Algorithm>
