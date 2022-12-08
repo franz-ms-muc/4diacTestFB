@@ -12,9 +12,6 @@
 			</FB>
 			<FB Name="E_FWD" Type="E_FWD" Comment="" x="312.5" y="-4825.0">
 			</FB>
-			<FB Name="AbfolgeTimed" Type="AbfolgeTimed" Comment="" x="3743.75" y="-4825.0">
-				<Parameter Name="QI" Value="TRUE"/>
-			</FB>
 			<FB Name="DigitalOutput_Q2" Type="QX" Comment="" x="6631.25" y="-3862.5">
 				<Parameter Name="QI" Value="TRUE"/>
 			</FB>
@@ -26,27 +23,34 @@
 			</FB>
 			<FB Name="E_TimeOut" Type="E_TimeOut" Comment="" x="5112.5" y="-1450.0">
 			</FB>
+			<FB Name="AbfolgeTimed" Type="AbfolgeTimed" Comment="" x="3743.75" y="-4825.0">
+				<Parameter Name="QI" Value="TRUE"/>
+				<Parameter Name="DT1" Value="T#1s"/>
+				<Parameter Name="DT2" Value="T#1s"/>
+				<Parameter Name="DT3" Value="T#1s"/>
+				<Parameter Name="DT4" Value="T#1s"/>
+			</FB>
 			<EventConnections>
 				<Connection Source="E_FWD.CNF" Destination="DigitalInput_I1_SINGLE_CLICK.INIT" Comment=""/>
-				<Connection Source="AbfolgeTimed.IND" Destination="DigitalOutput_Q1.REQ" Comment=""/>
-				<Connection Source="AbfolgeTimed.IND" Destination="DigitalOutput_Q2.REQ" Comment="" dx1="318.75"/>
-				<Connection Source="AbfolgeTimed.IND" Destination="DigitalOutput_Q3.REQ" Comment="" dx1="318.75"/>
-				<Connection Source="AbfolgeTimed.IND" Destination="DigitalOutput_Q4.REQ" Comment="" dx1="318.75"/>
-				<Connection Source="AbfolgeTimed.INITO" Destination="DigitalOutput_Q4.INIT" Comment="" dx1="381.25" dx2="687.5" dy="2225.0"/>
-				<Connection Source="AbfolgeTimed.INITO" Destination="DigitalOutput_Q3.INIT" Comment="" dx1="381.25" dx2="687.5" dy="1262.5"/>
-				<Connection Source="AbfolgeTimed.INITO" Destination="DigitalOutput_Q2.INIT" Comment="" dx1="381.25" dx2="687.5" dy="668.75"/>
-				<Connection Source="AbfolgeTimed.INITO" Destination="DigitalOutput_Q1.INIT" Comment=""/>
 				<Connection Source="DigitalInput_I1_SINGLE_CLICK.INITO" Destination="AbfolgeTimed.INIT" Comment=""/>
-				<Connection Source="DigitalInput_I1_SINGLE_CLICK.IND" Destination="AbfolgeTimed.REQ" Comment="" dx1="743.75"/>
+				<Connection Source="DigitalInput_I1_SINGLE_CLICK.IND" Destination="AbfolgeTimed.REQ" Comment="" dx1="743.75" dx2="743.75" dy="0.0"/>
+				<Connection Source="AbfolgeTimed.INITO" Destination="DigitalOutput_Q4.INIT" Comment="" dx1="381.25" dx2="381.25" dy="2225.0"/>
+				<Connection Source="AbfolgeTimed.INITO" Destination="DigitalOutput_Q3.INIT" Comment="" dx1="381.25" dx2="381.25" dy="1262.5"/>
+				<Connection Source="AbfolgeTimed.INITO" Destination="DigitalOutput_Q2.INIT" Comment="" dx1="381.25" dx2="381.25" dy="668.75"/>
+				<Connection Source="AbfolgeTimed.INITO" Destination="DigitalOutput_Q1.INIT" Comment=""/>
+				<Connection Source="AbfolgeTimed.IND" Destination="DigitalOutput_Q1.REQ" Comment=""/>
+				<Connection Source="AbfolgeTimed.IND" Destination="DigitalOutput_Q2.REQ" Comment="" dx1="318.75" dx2="318.75" dy="0.0"/>
+				<Connection Source="AbfolgeTimed.IND" Destination="DigitalOutput_Q3.REQ" Comment="" dx1="318.75" dx2="318.75" dy="0.0"/>
+				<Connection Source="AbfolgeTimed.IND" Destination="DigitalOutput_Q4.REQ" Comment="" dx1="318.75" dx2="318.75" dy="0.0"/>
 			</EventConnections>
 			<DataConnections>
-				<Connection Source="AbfolgeTimed.DO4" Destination="DigitalOutput_Q4.OUT" Comment="" dx1="131.25" dx2="693.75" dy="2256.25"/>
-				<Connection Source="AbfolgeTimed.DO3" Destination="DigitalOutput_Q3.OUT" Comment="" dx1="193.75" dx2="631.25" dy="1400.0"/>
-				<Connection Source="AbfolgeTimed.DO2" Destination="DigitalOutput_Q2.OUT" Comment="" dx1="256.25" dx2="631.25" dy="543.75"/>
-				<Connection Source="AbfolgeTimed.DO1" Destination="DigitalOutput_Q1.OUT" Comment="" dx1="1331.25"/>
+				<Connection Source="AbfolgeTimed.DO1" Destination="DigitalOutput_Q1.OUT" Comment="" dx1="1331.25" dx2="1331.25" dy="0.0"/>
+				<Connection Source="AbfolgeTimed.DO2" Destination="DigitalOutput_Q2.OUT" Comment="" dx1="256.25" dx2="256.25" dy="543.75"/>
+				<Connection Source="AbfolgeTimed.DO3" Destination="DigitalOutput_Q3.OUT" Comment="" dx1="193.75" dx2="193.75" dy="1400.0"/>
+				<Connection Source="AbfolgeTimed.DO4" Destination="DigitalOutput_Q4.OUT" Comment="" dx1="131.25" dx2="131.25" dy="2256.25"/>
 			</DataConnections>
 			<AdapterConnections>
-				<Connection Source="AbfolgeTimed.timeOut" Destination="E_TimeOut.TimeOutSocket" Comment="" dx1="68.75"/>
+				<Connection Source="AbfolgeTimed.timeOut" Destination="E_TimeOut.TimeOutSocket" Comment="" dx1="68.75" dx2="68.75" dy="0.0"/>
 			</AdapterConnections>
 		</SubAppNetwork>
 	</Application>
@@ -107,9 +111,6 @@
 				<FB Name="DigitalInput_I1_SINGLE_CLICK" Type="IX" Comment="" x="2806.25" y="-31.25">
 					<Parameter Name="QI" Value="TRUE"/>
 				</FB>
-				<FB Name="AbfolgeTimed" Type="AbfolgeTimed" Comment="" x="3743.75" y="-4825.0">
-					<Parameter Name="QI" Value="TRUE"/>
-				</FB>
 				<FB Name="DigitalOutput_Q2" Type="QX" Comment="" x="5368.75" y="-3862.5">
 					<Parameter Name="QI" Value="TRUE"/>
 				</FB>
@@ -121,6 +122,13 @@
 				</FB>
 				<FB Name="E_TimeOut" Type="E_TimeOut" Comment="" x="5237.5" y="-525.0">
 				</FB>
+				<FB Name="AbfolgeTimed" Type="AbfolgeTimed" Comment="" x="3743.75" y="-4825.0">
+					<Parameter Name="QI" Value="TRUE"/>
+					<Parameter Name="DT1" Value="T#1s"/>
+					<Parameter Name="DT2" Value="T#1s"/>
+					<Parameter Name="DT3" Value="T#1s"/>
+					<Parameter Name="DT4" Value="T#1s"/>
+				</FB>
 				<EventConnections>
 					<Connection Source="Hutschienenmoped_3_DI_SINGLE_CLICK.INITO" Destination="Hutschienenmoped_4_DO.INIT" Comment=""/>
 					<Connection Source="START.COLD" Destination="Hutschienenmoped_3_DI_SINGLE_CLICK.INIT" Comment=""/>
@@ -128,13 +136,13 @@
 					<Connection Source="START.COLD" Destination="E_FWD.REQ" Comment="" dx1="68.75"/>
 					<Connection Source="DigitalInput_I1_SINGLE_CLICK.INITO" Destination="AbfolgeTimed.INIT" Comment=""/>
 					<Connection Source="DigitalInput_I1_SINGLE_CLICK.IND" Destination="AbfolgeTimed.REQ" Comment=""/>
+					<Connection Source="AbfolgeTimed.INITO" Destination="DigitalOutput_Q4.INIT" Comment=""/>
+					<Connection Source="AbfolgeTimed.INITO" Destination="DigitalOutput_Q3.INIT" Comment=""/>
+					<Connection Source="AbfolgeTimed.INITO" Destination="DigitalOutput_Q2.INIT" Comment=""/>
 					<Connection Source="AbfolgeTimed.INITO" Destination="DigitalOutput_Q1.INIT" Comment=""/>
 					<Connection Source="AbfolgeTimed.IND" Destination="DigitalOutput_Q1.REQ" Comment=""/>
-					<Connection Source="AbfolgeTimed.INITO" Destination="DigitalOutput_Q2.INIT" Comment=""/>
 					<Connection Source="AbfolgeTimed.IND" Destination="DigitalOutput_Q2.REQ" Comment=""/>
-					<Connection Source="AbfolgeTimed.INITO" Destination="DigitalOutput_Q3.INIT" Comment=""/>
 					<Connection Source="AbfolgeTimed.IND" Destination="DigitalOutput_Q3.REQ" Comment=""/>
-					<Connection Source="AbfolgeTimed.INITO" Destination="DigitalOutput_Q4.INIT" Comment=""/>
 					<Connection Source="AbfolgeTimed.IND" Destination="DigitalOutput_Q4.REQ" Comment=""/>
 				</EventConnections>
 				<DataConnections>
@@ -154,11 +162,11 @@
 	<Mapping From="testApp.DigitalOutput_Q1" To="FORTE_PC.EMB_RES.DigitalOutput_Q1"/>
 	<Mapping From="testApp.E_FWD" To="FORTE_PC.EMB_RES.E_FWD"/>
 	<Mapping From="testApp.DigitalInput_I1_SINGLE_CLICK" To="FORTE_PC.EMB_RES.DigitalInput_I1_SINGLE_CLICK"/>
-	<Mapping From="testApp.AbfolgeTimed" To="FORTE_PC.EMB_RES.AbfolgeTimed"/>
 	<Mapping From="testApp.DigitalOutput_Q2" To="FORTE_PC.EMB_RES.DigitalOutput_Q2"/>
 	<Mapping From="testApp.DigitalOutput_Q3" To="FORTE_PC.EMB_RES.DigitalOutput_Q3"/>
 	<Mapping From="testApp.DigitalOutput_Q4" To="FORTE_PC.EMB_RES.DigitalOutput_Q4"/>
 	<Mapping From="testApp.E_TimeOut" To="FORTE_PC.EMB_RES.E_TimeOut"/>
+	<Mapping From="testApp.AbfolgeTimed" To="FORTE_PC.EMB_RES.AbfolgeTimed"/>
 	<Segment Name="Ethernet" Type="Ethernet" Comment="" x="4087.5" y="1912.5" dx1="1875.0">
 		<Attribute Name="Color" Type="STRING" Value="201,77,119"/>
 	</Segment>

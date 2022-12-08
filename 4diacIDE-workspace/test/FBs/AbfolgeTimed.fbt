@@ -28,6 +28,10 @@
 		</EventOutputs>
 		<InputVars>
 			<VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier"/>
+			<VarDeclaration Name="DT1" Type="TIME" Comment=""/>
+			<VarDeclaration Name="DT2" Type="TIME" Comment=""/>
+			<VarDeclaration Name="DT3" Type="TIME" Comment=""/>
+			<VarDeclaration Name="DT4" Type="TIME" Comment=""/>
 		</InputVars>
 		<OutputVars>
 			<VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier"/>
@@ -56,25 +60,29 @@
 			</ECState>
 			<ECState Name="Out1" Comment="" x="3881.25" y="468.75">
 				<ECAction Algorithm="Out1" Output="IND"/>
+				<ECAction Output="timeOut.START"/>
 			</ECState>
 			<ECState Name="Out2" Comment="" x="3881.25" y="1056.25">
 				<ECAction Algorithm="Out2" Output="IND"/>
+				<ECAction Output="timeOut.START"/>
 			</ECState>
 			<ECState Name="Out3" Comment="" x="3881.25" y="1643.75">
 				<ECAction Algorithm="Out3" Output="IND"/>
+				<ECAction Output="timeOut.START"/>
 			</ECState>
 			<ECState Name="Out4" Comment="" x="3881.25" y="2231.25">
 				<ECAction Algorithm="Out4" Output="IND"/>
+				<ECAction Output="timeOut.START"/>
 			</ECState>
 			<ECTransition Source="START" Destination="Init" Condition="INIT[TRUE = QI]" Comment="" x="831.25" y="912.5"/>
 			<ECTransition Source="Init" Destination="Initialized" Condition="1" Comment="" x="1656.25" y="968.75"/>
 			<ECTransition Source="DeInit" Destination="START" Condition="1" Comment="" x="931.25" y="1437.5"/>
 			<ECTransition Source="Initialized" Destination="DeInit" Condition="INIT[FALSE = QI]" Comment="" x="1687.5" y="1331.25"/>
 			<ECTransition Source="Initialized" Destination="Out1" Condition="REQ" Comment="" x="3300.0" y="787.5"/>
-			<ECTransition Source="Out1" Destination="Out2" Condition="REQ" Comment="" x="4031.25" y="918.75"/>
-			<ECTransition Source="Out2" Destination="Out3" Condition="REQ" Comment="" x="4012.5" y="1500.0"/>
-			<ECTransition Source="Out3" Destination="Out4" Condition="REQ" Comment="" x="4050.0" y="2068.75"/>
-			<ECTransition Source="Out4" Destination="Initialized" Condition="REQ" Comment="" x="3187.5" y="1981.25"/>
+			<ECTransition Source="Out1" Destination="Out2" Condition="timeOut.TimeOut" Comment="" x="4031.25" y="918.75"/>
+			<ECTransition Source="Out2" Destination="Out3" Condition="timeOut.TimeOut" Comment="" x="4012.5" y="1500.0"/>
+			<ECTransition Source="Out3" Destination="Out4" Condition="timeOut.TimeOut" Comment="" x="4050.0" y="2068.75"/>
+			<ECTransition Source="Out4" Destination="Initialized" Condition="timeOut.TimeOut" Comment="" x="3187.5" y="1981.25"/>
 		</ECC>
 		<Algorithm Name="initialize" Comment="">
 			<ST><![CDATA[ALGORITHM initialize
@@ -95,6 +103,7 @@ END_ALGORITHM]]></ST>
 
 ALGORITHM Out1
 DO1 := TRUE;
+timeOut.DT := DT1;
 ActualStep := 'Out1';
 END_ALGORITHM]]></ST>
 		</Algorithm>
@@ -104,6 +113,7 @@ END_ALGORITHM]]></ST>
 ALGORITHM Out2
 DO1 := FALSE;
 DO2 := TRUE;
+timeOut.DT := DT2;
 ActualStep := 'Out2';
 END_ALGORITHM]]></ST>
 		</Algorithm>
@@ -113,6 +123,7 @@ END_ALGORITHM]]></ST>
 ALGORITHM Out3
 DO2 := FALSE;
 DO3 := TRUE;
+timeOut.DT := DT3;
 ActualStep := 'Out3';
 END_ALGORITHM]]></ST>
 		</Algorithm>
@@ -122,6 +133,7 @@ END_ALGORITHM]]></ST>
 ALGORITHM Out4
 DO3 := FALSE;
 DO4 := TRUE;
+timeOut.DT := DT4;
 ActualStep := 'Out4';
 END_ALGORITHM]]></ST>
 		</Algorithm>
