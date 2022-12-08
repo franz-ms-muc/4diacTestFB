@@ -23,6 +23,10 @@
 		</EventOutputs>
 		<InputVars>
 			<VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier"/>
+			<VarDeclaration Name="DI1" Type="TIME" Comment=""/>
+			<VarDeclaration Name="DI2" Type="TIME" Comment=""/>
+			<VarDeclaration Name="DI3" Type="TIME" Comment=""/>
+			<VarDeclaration Name="DI4" Type="TIME" Comment=""/>
 		</InputVars>
 		<OutputVars>
 			<VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier"/>
@@ -50,21 +54,32 @@
 			<ECTransition Source="DeInit" Destination="START" Condition="1" Comment="" x="937.5" y="1443.75"/>
 			<ECTransition Source="Initialized" Destination="DeInit" Condition="INIT[FALSE = QI]" Comment="" x="1687.5" y="1337.5"/>
 		</ECC>
-		<Algorithm Name="initialize" Comment="Initialization algorithm">
-			<ST><![CDATA[
-QO := QI;]]></ST>
+		<Algorithm Name="initialize" Comment="">
+			<ST><![CDATA[ALGORITHM initialize
+
+QO := QI;
+END_ALGORITHM]]></ST>
 		</Algorithm>
-		<Algorithm Name="deInitialize" Comment="Normally executed algorithm">
+		<Algorithm Name="deInitialize" Comment="">
 			<ST><![CDATA[
-QO := FALSE;]]></ST>
+
+ALGORITHM deInitialize
+
+QO := FALSE;
+END_ALGORITHM]]></ST>
 		</Algorithm>
-		<Algorithm Name="normalOperation" Comment="new algorithm">
-			<ST><![CDATA[QO := QI;
+		<Algorithm Name="normalOperation" Comment="">
+			<ST><![CDATA[
+
+ALGORITHM normalOperation
+QO := QI;
 
 IF TRUE  = QI THEN
   (*  only perform normal operation of QI is true*)
 
 END_IF;
+END_ALGORITHM
+
 ]]></ST>
 		</Algorithm>
 	</BasicFB>
