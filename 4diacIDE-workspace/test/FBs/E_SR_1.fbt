@@ -15,6 +15,10 @@
 			<Event Name="EO" Type="Event" Comment="Output Q has changed">
 				<With Var="Q"/>
 			</Event>
+			<Event Name="SO" Type="Event" Comment="Set output Q Operated">
+			</Event>
+			<Event Name="RO" Type="Event" Comment="Reset output Q operated">
+			</Event>
 		</EventOutputs>
 		<OutputVars>
 			<VarDeclaration Name="Q" Type="BOOL" Comment=""/>
