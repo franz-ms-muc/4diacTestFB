@@ -53,6 +53,9 @@
 			<VarDeclaration Name="DO3" Type="BOOL" Comment=""/>
 			<VarDeclaration Name="DO4" Type="BOOL" Comment=""/>
 		</OutputVars>
+		<Plugs>
+			<AdapterDeclaration Name="timeOut" Type="ATimeOut" Comment=""/>
+		</Plugs>
 	</InterfaceList>
 	<BasicFB>
 		<ECC>
