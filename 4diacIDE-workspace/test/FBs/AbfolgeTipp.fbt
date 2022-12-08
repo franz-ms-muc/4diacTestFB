@@ -17,13 +17,21 @@
 				<With Var="QO"/>
 				<With Var="ActualStep"/>
 			</Event>
-			<Event Name="IND" Type="Event" Comment="Indication from Resource">
-				<With Var="QO"/>
-				<With Var="ActualStep"/>
+			<Event Name="EO1" Type="Event" Comment="">
 				<With Var="DO1"/>
+				<With Var="ActualStep"/>
+			</Event>
+			<Event Name="EO2" Type="Event" Comment="">
 				<With Var="DO2"/>
+				<With Var="ActualStep"/>
+			</Event>
+			<Event Name="EO3" Type="Event" Comment="">
 				<With Var="DO3"/>
+				<With Var="ActualStep"/>
+			</Event>
+			<Event Name="EO4" Type="Event" Comment="">
 				<With Var="DO4"/>
+				<With Var="ActualStep"/>
 			</Event>
 		</EventOutputs>
 		<InputVars>
@@ -40,72 +48,100 @@
 	</InterfaceList>
 	<BasicFB>
 		<ECC>
-			<ECState Name="START" Comment="Initial State" x="470.5882352941176" y="1123.5294117647059">
+			<ECState Name="START" Comment="Initial State" x="468.75" y="1118.75">
 			</ECState>
-			<ECState Name="Init" Comment="Initialization" x="1229.4117647058822" y="664.7058823529411">
+			<ECState Name="Init" Comment="Initialization" x="1225.0" y="662.5">
 				<ECAction Algorithm="initialize" Output="INITO"/>
 			</ECState>
-			<ECState Name="Initialized" Comment="" x="2470.5882352941176" y="1176.4705882352941">
-				<ECAction Algorithm="Off" Output="IND"/>
+			<ECState Name="Initialized" Comment="" x="2468.75" y="1175.0">
+				<ECAction Algorithm="Off"/>
 			</ECState>
-			<ECState Name="DeInit" Comment="" x="1135.2941176470588" y="1517.6470588235293">
+			<ECState Name="DeInit" Comment="" x="1131.25" y="1512.5">
 				<ECAction Algorithm="deInitialize" Output="INITO"/>
 			</ECState>
-			<ECState Name="Out1" Comment="" x="3882.3529411764703" y="470.5882352941176">
-				<ECAction Algorithm="Out1" Output="IND"/>
+			<ECState Name="Out1" Comment="" x="3881.25" y="468.75">
+				<ECAction Algorithm="Out1"/>
 			</ECState>
-			<ECState Name="Out2" Comment="" x="3882.3529411764703" y="1058.8235294117646">
-				<ECAction Algorithm="Out2" Output="IND"/>
+			<ECState Name="Out2" Comment="" x="3881.25" y="1056.25">
+				<ECAction Algorithm="Out2"/>
 			</ECState>
-			<ECState Name="Out3" Comment="" x="3882.3529411764703" y="1647.0588235294117">
-				<ECAction Algorithm="Out3" Output="IND"/>
+			<ECState Name="Out3" Comment="" x="3881.25" y="1643.75">
+				<ECAction Algorithm="Out3"/>
 			</ECState>
-			<ECState Name="Out4" Comment="" x="3882.3529411764703" y="2235.2941176470586">
-				<ECAction Algorithm="Out4" Output="IND"/>
+			<ECState Name="Out4" Comment="" x="3881.25" y="2231.25">
+				<ECAction Algorithm="Out4"/>
 			</ECState>
-			<ECTransition Source="START" Destination="Init" Condition="INIT[TRUE = QI]" Comment="" x="835.2941176470588" y="917.6470588235294"/>
-			<ECTransition Source="Init" Destination="Initialized" Condition="1" Comment="" x="1658.8235294117646" y="970.5882352941176"/>
-			<ECTransition Source="DeInit" Destination="START" Condition="1" Comment="" x="935.2941176470588" y="1441.1764705882351"/>
-			<ECTransition Source="Initialized" Destination="DeInit" Condition="INIT[FALSE = QI]" Comment="" x="1688.2352941176468" y="1335.2941176470588"/>
-			<ECTransition Source="Initialized" Destination="Out1" Condition="REQ" Comment="" x="3305.882352941176" y="788.235294117647"/>
-			<ECTransition Source="Out1" Destination="Out2" Condition="REQ" Comment="" x="4035.2941176470586" y="923.5294117647059"/>
-			<ECTransition Source="Out2" Destination="Out3" Condition="REQ" Comment="" x="4017.6470588235293" y="1500.0"/>
-			<ECTransition Source="Out3" Destination="Out4" Condition="REQ" Comment="" x="4052.941176470588" y="2070.5882352941176"/>
-			<ECTransition Source="Out4" Destination="Initialized" Condition="REQ" Comment="" x="3188.235294117647" y="1982.3529411764705"/>
+			<ECTransition Source="START" Destination="Init" Condition="INIT[TRUE = QI]" Comment="" x="831.25" y="912.5"/>
+			<ECTransition Source="Init" Destination="Initialized" Condition="1" Comment="" x="1656.25" y="968.75"/>
+			<ECTransition Source="DeInit" Destination="START" Condition="1" Comment="" x="931.25" y="1437.5"/>
+			<ECTransition Source="Initialized" Destination="DeInit" Condition="INIT[FALSE = QI]" Comment="" x="1687.5" y="1331.25"/>
+			<ECTransition Source="Initialized" Destination="Out1" Condition="REQ" Comment="" x="3300.0" y="787.5"/>
+			<ECTransition Source="Out1" Destination="Out2" Condition="REQ" Comment="" x="4031.25" y="918.75"/>
+			<ECTransition Source="Out2" Destination="Out3" Condition="REQ" Comment="" x="4012.5" y="1500.0"/>
+			<ECTransition Source="Out3" Destination="Out4" Condition="REQ" Comment="" x="4050.0" y="2068.75"/>
+			<ECTransition Source="Out4" Destination="Initialized" Condition="REQ" Comment="" x="3187.5" y="1981.25"/>
 		</ECC>
 		<Algorithm Name="initialize" Comment="">
-			<ST><![CDATA[QO := QI;
-ActualStep := 'initialize';]]></ST>
+			<ST><![CDATA[ALGORITHM initialize
+QO := QI;
+ActualStep := 'initialize';
+END_ALGORITHM]]></ST>
 		</Algorithm>
 		<Algorithm Name="deInitialize" Comment="">
-			<ST><![CDATA[QO := FALSE;
-ActualStep := 'deInitialize';]]></ST>
+			<ST><![CDATA[
+
+ALGORITHM deInitialize
+QO := FALSE;
+ActualStep := 'deInitialize';
+END_ALGORITHM]]></ST>
 		</Algorithm>
 		<Algorithm Name="Out1" Comment="">
-			<ST><![CDATA[DO1 := TRUE;
-ActualStep := 'Out1';]]></ST>
+			<ST><![CDATA[
+
+ALGORITHM Out1
+DO1 := TRUE;
+ActualStep := 'Out1';
+END_ALGORITHM]]></ST>
 		</Algorithm>
 		<Algorithm Name="Out2" Comment="">
-			<ST><![CDATA[DO1 := FALSE;
+			<ST><![CDATA[
+
+ALGORITHM Out2
+DO1 := FALSE;
 DO2 := TRUE;
-ActualStep := 'Out2';]]></ST>
+ActualStep := 'Out2';
+END_ALGORITHM]]></ST>
 		</Algorithm>
 		<Algorithm Name="Out3" Comment="">
-			<ST><![CDATA[DO2 := FALSE;
+			<ST><![CDATA[
+
+ALGORITHM Out3
+DO2 := FALSE;
 DO3 := TRUE;
-ActualStep := 'Out3';]]></ST>
+ActualStep := 'Out3';
+END_ALGORITHM]]></ST>
 		</Algorithm>
 		<Algorithm Name="Out4" Comment="">
-			<ST><![CDATA[DO3 := FALSE;
+			<ST><![CDATA[
+
+ALGORITHM Out4
+DO3 := FALSE;
 DO4 := TRUE;
-ActualStep := 'Out4';]]></ST>
+ActualStep := 'Out4';
+END_ALGORITHM]]></ST>
 		</Algorithm>
 		<Algorithm Name="Off" Comment="">
-			<ST><![CDATA[DO1 := FALSE;
+			<ST><![CDATA[
+
+ALGORITHM Off
+DO1 := FALSE;
 DO2 := FALSE;
 DO3 := FALSE;
 DO4 := FALSE;
-ActualStep := 'Off';]]></ST>
+ActualStep := 'Off';
+END_ALGORITHM
+
+]]></ST>
 		</Algorithm>
 	</BasicFB>
 </FBType>
