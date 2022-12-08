@@ -15,6 +15,8 @@
 				<With Var="DT3"/>
 				<With Var="DT4"/>
 			</Event>
+			<Event Name="DELAYED" Type="Event" Comment="">
+			</Event>
 		</EventInputs>
 		<EventOutputs>
 			<Event Name="INITO" Type="Event" Comment="Initialization Confirm">
@@ -37,6 +39,9 @@
 				<With Var="DO4"/>
 				<With Var="ActualStep"/>
 			</Event>
+			<Event Name="START" Type="Event" Comment="">
+				<With Var="DTO"/>
+			</Event>
 		</EventOutputs>
 		<InputVars>
 			<VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier"/>
@@ -52,10 +57,8 @@
 			<VarDeclaration Name="DO2" Type="BOOL" Comment=""/>
 			<VarDeclaration Name="DO3" Type="BOOL" Comment=""/>
 			<VarDeclaration Name="DO4" Type="BOOL" Comment=""/>
+			<VarDeclaration Name="DTO" Type="TIME" Comment=""/>
 		</OutputVars>
-		<Plugs>
-			<AdapterDeclaration Name="timeOut" Type="ATimeOut" Comment=""/>
-		</Plugs>
 	</InterfaceList>
 	<BasicFB>
 		<ECC>
@@ -65,32 +68,39 @@
 				<ECAction Algorithm="initialize" Output="INITO"/>
 			</ECState>
 			<ECState Name="Initialized" Comment="" x="2468.75" y="1175.0">
-				<ECAction Algorithm="Off"/>
+				<ECAction Algorithm="Off" Output="EO4"/>
 			</ECState>
 			<ECState Name="DeInit" Comment="" x="1131.25" y="1512.5">
 				<ECAction Algorithm="deInitialize" Output="INITO"/>
 			</ECState>
 			<ECState Name="Out1" Comment="" x="3881.25" y="468.75">
 				<ECAction Algorithm="Out1" Output="EO1"/>
+				<ECAction Output="START"/>
 			</ECState>
 			<ECState Name="Out2" Comment="" x="3881.25" y="1056.25">
 				<ECAction Algorithm="Out2" Output="EO2"/>
+				<ECAction Output="EO1"/>
+				<ECAction Output="START"/>
 			</ECState>
 			<ECState Name="Out3" Comment="" x="3881.25" y="1643.75">
 				<ECAction Algorithm="Out3" Output="EO3"/>
+				<ECAction Output="EO2"/>
+				<ECAction Output="START"/>
 			</ECState>
 			<ECState Name="Out4" Comment="" x="3881.25" y="2231.25">
 				<ECAction Algorithm="Out4" Output="EO4"/>
+				<ECAction Output="EO3"/>
+				<ECAction Output="START"/>
 			</ECState>
 			<ECTransition Source="START" Destination="Init" Condition="INIT[TRUE = QI]" Comment="" x="831.25" y="912.5"/>
 			<ECTransition Source="Init" Destination="Initialized" Condition="1" Comment="" x="1656.25" y="968.75"/>
 			<ECTransition Source="DeInit" Destination="START" Condition="1" Comment="" x="931.25" y="1437.5"/>
 			<ECTransition Source="Initialized" Destination="DeInit" Condition="INIT[FALSE = QI]" Comment="" x="1687.5" y="1331.25"/>
 			<ECTransition Source="Initialized" Destination="Out1" Condition="REQ" Comment="" x="3300.0" y="787.5"/>
-			<ECTransition Source="Out1" Destination="Out2" Condition="REQ" Comment="" x="4031.25" y="918.75"/>
-			<ECTransition Source="Out2" Destination="Out3" Condition="REQ" Comment="" x="4012.5" y="1500.0"/>
-			<ECTransition Source="Out3" Destination="Out4" Condition="REQ" Comment="" x="4050.0" y="2068.75"/>
-			<ECTransition Source="Out4" Destination="Initialized" Condition="REQ" Comment="" x="3187.5" y="1981.25"/>
+			<ECTransition Source="Out1" Destination="Out2" Condition="DELAYED" Comment="" x="4031.25" y="918.75"/>
+			<ECTransition Source="Out2" Destination="Out3" Condition="DELAYED" Comment="" x="4012.5" y="1500.0"/>
+			<ECTransition Source="Out3" Destination="Out4" Condition="DELAYED" Comment="" x="4050.0" y="2068.75"/>
+			<ECTransition Source="Out4" Destination="Initialized" Condition="DELAYED" Comment="" x="3187.5" y="1981.25"/>
 		</ECC>
 		<Algorithm Name="initialize" Comment="">
 			<ST><![CDATA[ALGORITHM initialize
@@ -111,7 +121,7 @@ END_ALGORITHM]]></ST>
 
 ALGORITHM Out1
 DO1 := TRUE;
-timeOut.DT := DT1;
+DTO := DT1;
 ActualStep := 'Out1';
 END_ALGORITHM]]></ST>
 		</Algorithm>
@@ -121,6 +131,7 @@ END_ALGORITHM]]></ST>
 ALGORITHM Out2
 DO1 := FALSE;
 DO2 := TRUE;
+DTO := DT2;
 ActualStep := 'Out2';
 END_ALGORITHM]]></ST>
 		</Algorithm>
@@ -130,6 +141,7 @@ END_ALGORITHM]]></ST>
 ALGORITHM Out3
 DO2 := FALSE;
 DO3 := TRUE;
+DTO := DT3;
 ActualStep := 'Out3';
 END_ALGORITHM]]></ST>
 		</Algorithm>
@@ -139,6 +151,7 @@ END_ALGORITHM]]></ST>
 ALGORITHM Out4
 DO3 := FALSE;
 DO4 := TRUE;
+DTO := DT4;
 ActualStep := 'Out4';
 END_ALGORITHM]]></ST>
 		</Algorithm>
